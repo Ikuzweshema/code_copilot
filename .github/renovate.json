@@ -1,27 +1,36 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base",
+    "config:recommended",
     ":automergePatch",
     ":automergeMinor",
     ":enableVulnerabilityAlerts"
   ],
-  "schedule": ["on the first day of the month at 6:00am"],
+  "schedule": [
+    "on the first day of the month at 6:00am"
+  ],
   "packageRules": [
     {
-      "matchPackagePatterns": ["^@radix-ui/"],
       "groupName": "radix-ui packages",
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": [
+        "/^@radix-ui//"
+      ]
     },
     {
-      "matchPackagePatterns": ["^@auth/", "^next-auth"],
       "groupName": "auth packages",
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": [
+        "/^@auth//",
+        "/^next-auth/"
+      ]
     },
     {
-      "matchPackagePatterns": ["^@prisma/"],
       "groupName": "prisma packages",
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": [
+        "/^@prisma//"
+      ]
     },
     {
       "matchPackageNames": [
@@ -34,14 +43,21 @@
       "automerge": false
     },
     {
-      "matchPackagePatterns": ["^@types/"],
       "groupName": "type definitions",
-      "automerge": true
+      "automerge": true,
+      "matchPackageNames": [
+        "/^@types//"
+      ]
     }
   ],
   "rangeStrategy": "pin",
-  "ignoreDeps": ["babel-plugin-react-compiler", "next"],
-  "labels": ["dependencies"],
+  "ignoreDeps": [
+    "babel-plugin-react-compiler",
+    "next"
+  ],
+  "labels": [
+    "dependencies"
+  ],
   "prConcurrentLimit": 5,
   "automergeType": "pr",
   "platformAutomerge": true,
